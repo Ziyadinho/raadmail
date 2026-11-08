@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.wrangler/
+coverage/
+test-results/
+playwright-report/
+test/fixtures/generated/
+docs
+
+# Secrets: local dev vars, live-test credentials, private notes
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+.live.env
+docs/creds.txt
+/deploy
+
+*.log
+.DS_Store
+.upstream-version
+
+# Local-only notes and agent instructions (not published)
+.notes/
+CLAUDE.md
