@@ -381,7 +381,16 @@ function ChecksStage({
                       : c.encryptionKey.message
               }
             >
-              {activating && <SlowNote after={20}>Taking longer than usual. Keep this page open; it carries on by itself.</SlowNote>}
+              {activating && (
+                <SlowNote after={20}>
+                  <p>The key has not become active yet. If a deployment removed it, reconnect your Cloudflare token to create and save a replacement.</p>
+                  {!replacingKey && !connecting && (
+                    <Button variant="ghost" size="sm" className="mt-2" onClick={() => setReplacingKey(true)}>
+                      Retry key activation
+                    </Button>
+                  )}
+                </SlowNote>
+              )}
               {recoveryKey && (freshKey || showKey) && <RecoveryKey value={recoveryKey} />}
               {freshKey && (
                 <Button variant="primary" size="sm" className="mt-3" icon={<Check className="h-4 w-4" />} onClick={() => setKeySaved(true)}>
@@ -398,7 +407,7 @@ function ChecksStage({
                   Didn't save the key? Create a new one
                 </button>
               )}
-              {!recoveryKey && keyState === 'generated' && replacingKey && (
+              {(activating || (!recoveryKey && keyState === 'generated')) && replacingKey && (
                 <TokenForm
                   newKey
                   onBusy={busy('newKey')}

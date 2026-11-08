@@ -232,6 +232,7 @@ If your copy was created before automatic updates were removed, its workflow sti
 | --- | --- |
 | Mail not arriving or not sending | Start with **Admin → Domains → Check health** and **Admin → Mail flow** |
 | Locked out of the owner account | On the sign-in page, choose **Owner locked out?** and enter the owner email and your recovery key |
+| First-run setup stays on "Save your recovery key" | After 20 seconds, choose **Retry key activation** and reconnect your Cloudflare token. This proves ownership again and saves a replacement key. Save the newly displayed recovery key privately; an earlier key is no longer valid. No database reset is needed. If activation still stalls, check that the active Worker's `ENCRYPTION_KEY` secret exists and that a concurrent build has not replaced the deployment. |
 | "A repository with that name already exists" on the Deploy form | An earlier deploy already made that repo. Change **Project name**, or [update](#updating) the existing instance instead |
 
 ## Roadmap
